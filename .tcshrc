@@ -1,1 +1,108 @@
-../.tcshrc
+# .tcshrc
+#
+alias ls 'ls -FvB --color=auto'
+alias l 'ls -FvB'
+alias la 'ls -FvA'
+alias ll 'ls -Fvlha'
+alias lla 'ls -Fvlha'
+alias llatr 'ls -FvlhAtra'
+alias latr 'ls -FvAtr'
+alias cp 'cp -i'
+alias rm 'rm -i'
+alias rmtil 'rm -i *~'
+alias rmdottil 'rm -i .*~'
+alias mv 'mv -i'
+alias df 'df -h'
+alias grep 'grep -i --color'
+alias cal 'cal -3'
+alias lo 'logout'
+alias bye 'exit'
+alias psg 'ps -aux|grep'
+alias h 'head'
+
+alias run_all 'qhost | cut -f 1 | sed '1,3d' | cut -f 1 -d ' ' | xargs -i ssh {} '
+
+alias Less '/usr/bin/less'
+alias less 'less -S'
+
+alias qs 'qstat | less'
+alias qm 'qstat -u mkuhn | less'
+alias cl '(count | less)' 
+alias llt 'll -t \!* | head'
+
+alias adm_bork 'ssh adm_bork@emil'
+
+alias search 'find -name "*.p[lmy]" -or -name "Makefile*" -or -name "*.sh" | grep -v "\.svn" | xargs grep -i --color '
+alias Search 'find -name "*.p[lmy]" -or -name Makefile -or -name "*.sh" | grep -v "\.svn" | xargs grep '
+
+set prompt="[%n@%m] %/> "
+
+alias src 'source ~/.tcshrc'
+
+bindkey -b M-d backward-delete-word
+
+if (! $?HOST) then
+        if (-f /bin/uname) then
+                setenv HOST     `/bin/uname -n`
+        else
+                setenv HOST     `/bin/hostname`
+        endif
+endif
+
+if (! $?LD_LIBRARY_PATH) then
+    setenv LD_LIBRARY_PATH
+endif
+
+setenv EDITOR '/usr/bin/emacs -nw'
+
+if ($HOST == "string") then
+    setenv LD_LIBRARY_PATH "/usr/people/mkuhn/lib"
+else
+    setenv PATH "$HOME/bin:/g/bork3/x86_64/bin:/g/bork3/bin:/g/bork3/home/mkuhn/bin:/usr/sbin:/usr/local/bin:$PATH"
+    setenv PYTHONPATH "/g/bork3/home/mkuhn"
+endif
+
+if ($HOST == "emil") then
+    alias cpan sudo /usr/bin/perl -MCPAN -e shell
+endif
+
+if ($HOST == "sub-master") then
+    source /usr/local/bin/pbs.csh
+endif
+
+if ($HOST == "xi") then
+    alias svn /usr/bin/svn
+endif
+
+setenv LC_ALL C   
+
+
+
+# Set the title bar and tabs of iTerm separately in tcsh
+#
+# The full path of current working directory will appear in the title bar
+#
+alias settitle 'echo -n "]2; "\!*""'
+alias SetTitle 'settitle $HOST $cwd '
+#
+# The last two directories in the path will appear in the tab
+# However, this is what will appear in the title bar of terminal.app
+#
+alias settab 'echo -n "]1; "\!*""'
+alias SetTab 'settab $cwd:h:t/$cwd:t'
+#
+#This dynamically updates both titles whenever you change directories
+# If you use pushd and popd, alias them likewise to redefine them.
+#
+alias cd 'cd \!*;SetTab;SetTitle'
+#
+# Start the label update process on login to window
+#SetTitle;SetTab
+ 
+##alias jobcmd 'echo -n "]2\;\!#"'
+#alias precmd 'SetTab;SetTitle'
+set autologout=0
+set ignoreeof
+
+#SetTab
+#SetTitle
