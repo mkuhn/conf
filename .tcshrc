@@ -19,6 +19,8 @@ alias lo 'logout'
 alias bye 'exit'
 alias psg 'ps -aux|grep'
 alias h 'head'
+alias r 'ls -t | head -1 | xargs less'
+alias r2 'ls -t | head -2 | tail -1 | xargs less'
 
 alias run_all 'qhost | cut -f 1 | sed '1,3d' | cut -f 1 -d ' ' | xargs -i ssh {} '
 
@@ -48,6 +50,8 @@ if (! $?HOST) then
                 setenv HOST     `/bin/hostname`
         endif
 endif
+
+setenv HOST `echo $HOST | cut -f 1 -d .`
 
 if (! $?LD_LIBRARY_PATH) then
     setenv LD_LIBRARY_PATH
@@ -90,11 +94,15 @@ alias SetTitle 'settitle $HOST $cwd '
 #
 alias settab 'echo -n "]1; "\!*""'
 alias SetTab 'settab $cwd:h:t/$cwd:t'
+
+alias setscreen 'echo -n -e "\033k"\!*"\033\\\r"'
+alias SetScreen 'setscreen $HOST $cwd:h:t/$cwd:t'
+
 #
 #This dynamically updates both titles whenever you change directories
 # If you use pushd and popd, alias them likewise to redefine them.
 #
-alias cd 'cd \!*;SetTab;SetTitle'
+alias cd 'cd \!*;SetTab;SetTitle;SetScreen'
 #
 # Start the label update process on login to window
 #SetTitle;SetTab
