@@ -1,0 +1,32 @@
+escape ``
+autodetach on
+startup_message off 
+defscrollback 30000
+
+# hardstatus alwayslastline                                        
+# hardstatus string '%{gk}[ %{G}%H %{g}][%= %{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %m/%d %c ]%{W}'
+
+hardstatus alwayslastline 
+hardstatus string "%{=b dw}%{=b dk} %= %?%{-b db}%-Lw%?%{+b dk}(%{+b dk}%n:%t%{+b dk})%?(%u)%?%{-b dw}%?%{-b db}%+Lw%?"
+# hardstatus alwayslastline "%{+b dw}:%{-b dw}:%{+b dk}[%{-b dg} %0C:%s%a %{=b dk}]-[   %{-b dw}Load%{+b dk}:%{-b dg}%l %{+b dk}] [%{-b dg}%2`%{+b dk}] %=[ %{-b dg}%1`%{=b dk} ]%{-b dw}:%{+b dw}:%<"
+
+# alternative screen switching
+altscreen on
+
+
+termcapinfo xterm* ti@:te@
+
+# remove some key bindings
+bind k
+bind W
+bind ^k
+bind .
+bind ^\
+bind \\
+bind ^h
+bind h
+# make them safer
+bind 'K' kill
+bind 'W' windowlist
+
+
