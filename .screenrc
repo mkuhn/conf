@@ -14,7 +14,7 @@ hardstatus string "%{=b dw}%{=b dk} %= %?%{-b db}%-Lw%?%{+b dk}(%{+b dk}%n:%t%{+
 altscreen on
 
 
-termcapinfo xterm* ti@:te@
+# termcapinfo * ti@:te@
 
 # remove some key bindings
 bind k
