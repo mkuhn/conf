@@ -1,5 +1,7 @@
 # .tcshrc
 #
+umask 2
+
 alias ls 'ls -FvB --color=auto'
 alias l 'ls -FvB'
 alias la 'ls -FvA'
