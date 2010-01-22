@@ -1,7 +1,9 @@
 # .tcshrc
 #
+
 umask 2
 
+alias scr 'screen -x'
 alias ls 'ls -FvB --color=auto'
 alias l 'ls -FvB'
 alias la 'ls -FvA'
@@ -21,8 +23,8 @@ alias lo 'logout'
 alias bye 'exit'
 alias psg 'ps -aux|grep'
 alias h 'head'
-alias r 'ls -t | head -1 | xargs less'
-alias r2 'ls -t | head -2 | tail -1 | xargs less'
+alias r 'ls -t \!* | head -1 | xargs less'
+alias r2 'ls -t \!* | head -2 | tail -1 | xargs less'
 
 alias run_all 'qhost | cut -f 1 | sed '1,3d' | cut -f 1 -d ' ' | xargs -i ssh {} '
 
@@ -53,6 +55,7 @@ if (! $?HOST) then
         endif
 endif
 
+setenv LESS SR
 setenv HOST `echo $HOST | cut -f 1 -d .`
 
 if (! $?LD_LIBRARY_PATH) then
