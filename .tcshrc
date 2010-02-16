@@ -1,5 +1,8 @@
 # .tcshrc
 #
+
+umask 2
+
 alias ww 'readlink -f'
 alias scr 'screen -x'
 alias ls 'ls -FvB --color=auto'
